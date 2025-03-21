@@ -1,0 +1,65 @@
+/**
+ * Directions will be prefixed
+ * so if prefix is "m" and providing "t" for top will be mt
+ * allowed directions are:
+ * ~ t -> top
+ * ~ r -> right
+ * ~ b -> bottom
+ * ~ l -> left
+ * ~ x -> left and right
+ * ~ y -> top and bottom
+ */
+
+$configGenerateMarginsDirection: (
+	't',
+	'r',
+	'b',
+	'l',
+	'x',
+	'y'
+); //like mt, mr, mb, ml, mx, my;
+
+$configGeneratePaddingsDirection: (
+	't',
+	'r',
+	'b',
+	'l',
+	'x',
+	'y'
+); //like pt, pr, pb, pl, px, py;
+
+$spacings: (
+	'auto': 'auto',
+	'0': 0,
+	'5': 5,
+	'10': 10,
+	'12': 12,
+	'15': 15,
+	'20': 20,
+	'25': 25,
+	'30': 30,
+	'35': 35,
+	'40': 40,
+	'45': 45,
+	'50': 50,
+	'55': 55,
+	'60': 60,
+	'65': 65,
+	'70': 70,
+	'75': 75,
+	'80': 80,
+	'85': 85,
+	'90': 90,
+	'95': 95,
+	'100': 100,
+	'110': 110,
+	'120': 120,
+	'130': 130,
+	'140': 140,
+	'150': 150,
+	'160': 160,
+	'170': 170,
+	'180': 180,
+	'190': 190,
+	'200': 200,
+);

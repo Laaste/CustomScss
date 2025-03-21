@@ -1,0 +1,218 @@
+@use "sass:list";
+
+$configMarginClassPrefix: 'm' !default;
+$configGenerateMargins: false !default;
+$configGenerateMarginsPerBreakPoint: false !default;
+$configGenerateMarginsPerDirection: false !default;
+$configGenerateMarginsDirection: ( 't', 'r', 'b', 'l', 'x', 'y' ) !default; //like mt, mr, mb, ml, mx, my;
+
+$configPaddingClassPrefix: 'p' !default;
+$configGeneratePaddings: false !default;
+$configGeneratePaddingsPerBreakPoint: false !default;
+$configGeneratePaddingsPerDirection: false !default;
+$configGeneratePaddingsDirection: ( 't', 'r', 'b', 'l', 'x', 'y') !default; //like pt, pr, pb, pl, px, py;
+
+@function marginValue($value)
+{
+	@if($value == 'auto')
+	{
+		@return $value;
+	}
+
+	@else
+	{
+		@return val($value);
+	}
+}
+
+@mixin generateDirectedMargin($value, $direction: '')
+{
+	@if ($direction =='t')
+	{
+		margin-top: #{marginValue($value)};
+	}
+
+	@else if ($direction =='r')
+	{
+		margin-right: #{marginValue($value)};
+	}
+
+	@else if ($direction =='b')
+	{
+		margin-bottom: #{marginValue($value)};
+	}
+
+	@else if ($direction =='l')
+	{
+		margin-left: #{marginValue($value)};
+	}
+
+	@else if ($direction =='x')
+	{
+		margin-right: #{marginValue($value)};
+		margin-left: #{marginValue($value)};
+	}
+
+	@else if ($direction =='y')
+	{
+		margin-top: #{marginValue($value)};
+		margin-bottom: #{marginValue($value)};
+	}
+
+	@else
+	{
+		margin: #{marginValue($value)};
+	}
+}
+
+@mixin generateMargins()
+{
+	@each $spacingsName, $spacingsValue in $spacings
+	{
+		.#{$configMarginClassPrefix}-#{$spacingsValue}
+		{
+			@include generateDirectedMargin($spacingsValue);
+		}
+
+		@if ($configGeneratePaddingsPerDirection and list.length($configGeneratePaddingsDirection) > 0)
+		{
+			@each $direction in $configGeneratePaddingsDirection
+			{
+				.#{$configMarginClassPrefix}#{$direction}-#{$spacingsValue}
+				{
+					@include generateDirectedMargin($spacingsValue, $direction);
+				}
+			}
+		}
+	}
+
+	@if(length($configGenerateMarginsPerBreakPoint) and list.length($breakPoints) > 0)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px') {
+				@each $spacingsName, $spacingsValue in $spacings
+				{
+					.#{$configMarginClassPrefix}-#{$breakPointName}-#{$spacingsValue}
+					{
+						@include generateDirectedMargin($spacingsValue);
+					}
+
+					@if ($configGeneratePaddingsPerDirection and list.length($configGeneratePaddingsDirection) > 0)
+					{
+						@each $direction in $configGeneratePaddingsDirection
+						{
+							.#{$configMarginClassPrefix}#{$direction}-#{$breakPointName}-#{$spacingsValue}
+							{
+								@include generateDirectedMargin($spacingsValue, $direction);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateMargins
+{
+	@include generateMargins();
+}
+
+///////////////////////////////////////////
+/// paddings
+///////////////////////////////////////////
+
+@mixin generateDirectedPadding($value, $direction: '')
+{
+	@if ($direction =='t')
+	{
+		padding-top: val($value);
+	}
+
+	@else if ($direction =='r')
+	{
+		padding-right: val($value);
+	}
+
+	@else if ($direction =='b')
+	{
+		padding-bottom: val($value);
+	}
+
+	@else if ($direction =='l')
+	{
+		padding-left: val($value);
+	}
+
+	@else if ($direction =='x')
+	{
+		padding-right: val($value);
+		padding-left: val($value);
+	}
+
+	@else if ($direction =='y')
+	{
+		padding-top: val($value);
+		padding-bottom: val($value);
+	}
+
+	@else
+	{
+		padding: val($value);
+	}
+}
+
+@mixin generatePaddings()
+{
+	@each $spacingsName, $spacingsValue in $spacings
+	{
+		.#{$configPaddingClassPrefix}-#{$spacingsValue}
+		{
+			@include generateDirectedPadding($spacingsValue);
+		}
+
+		@if ($configGeneratePaddingsPerDirection and list.length($configGeneratePaddingsDirection) > 0)
+		{
+			@each $direction in $configGeneratePaddingsDirection
+			{
+				.#{$configPaddingClassPrefix}#{$direction}-#{$spacingsValue}
+				{
+					@include generateDirectedPadding($spacingsValue, $direction);
+				}
+			}
+		}
+	}
+
+	@if(length($configGeneratePaddingsPerBreakPoint) and list.length($breakPoints) > 0)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $spacingsName, $spacingsValue in $spacings
+				{
+					.#{$configPaddingClassPrefix}-#{$breakPointName}-#{$spacingsValue} {
+						@include generateDirectedPadding($spacingsValue);
+					}
+
+					@if ($configGeneratePaddingsPerDirection and list.length($configGeneratePaddingsDirection) > 0)
+					{
+						@each $direction in $configGeneratePaddingsDirection
+						{
+							.#{$configPaddingClassPrefix}#{$direction}-#{$breakPointName}-#{$spacingsValue}
+							{
+								@include generateDirectedPadding($spacingsValue, $direction);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGeneratePaddings
+{
+	@include generatePaddings();
+}

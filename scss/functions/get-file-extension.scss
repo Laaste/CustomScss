@@ -1,0 +1,19 @@
+@function getFileExtensions($fileName)
+{
+	$length: str-length($fileName);
+	$extension: "";
+	$foundPeriod: false;
+
+	@for $i from $length through 1
+	{
+		$char: str-slice($fileName, $i, $i);
+
+		@if $char == "." and not $foundPeriod
+		{
+			$extension: str-slice($fileName, $i + 1);
+			$foundPeriod: true;
+		}
+	}
+
+	@return $extension;
+}

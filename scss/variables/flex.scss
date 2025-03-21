@@ -1,0 +1,56 @@
+$flexDirections: (
+	'row',
+	'row-reverse',
+	'column',
+	'column-reverse',
+);
+
+$flexWrap: (
+	'wrap',
+	'wrap-reverse',
+	'nowrap',
+);
+
+$flexGrowValues:(
+	0,
+	1
+);
+$flexShrinkValues: (
+	0,
+	1
+);
+$flexBasisValues: (
+	0,
+	auto,
+);
+
+$flexJustifyContent: (
+	'start': 'flex-start',
+	'end': 'flex-end',
+	'center': 'center',
+	'between': 'space-between',
+	'around': 'space-around',
+);
+
+$flexAlignItems: (
+	'start': 'flex-start',
+	'end': 'flex-end',
+	'center': 'center',
+	'baseline': 'baseline',
+	'stretch': 'stretch',
+	'between': 'space-between', //only when direction column
+	'around': 'space-around', //only when direction column
+);
+
+$flexAlignSelf: (
+	// 'start': 'flex-start',
+	// 'end': 'flex-end',
+	// 'center': 'center',
+	// 'baseline': 'baseline',
+	// 'stretch': 'stretch',
+);
+
+$flexOrder: (
+	'min': 0,
+	'max': 12,
+);

@@ -1,0 +1,103 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+
+@function getBreakPointValue($breakPointName)
+{
+	@return map.get($breakPoints, $breakPointName);
+}
+
+@function getLargestBreakPoint()
+{
+	$largest: 0;
+
+	@if(list.length($breakPoints) >= 1)
+	{
+		@each $breakpointName, $value in $breakPoints
+		{
+			@if($largest < $value)
+			{
+				$largest: $value;
+			}
+		}
+	}
+
+	@return $largest;
+}
+
+@function getSmallestBreakPoint()
+{
+	$smallest: false;
+
+	@if(list.length($breakPoints) >= 1)
+	{
+		@each $breakpointName, $value in $breakPoints
+		{
+			@if($smallest == false)
+			{
+				$smallest: $value;
+			}
+			@else if($smallest > $value)
+			{
+				$smallest: $value;
+			}
+		}
+	}
+
+	@return $smallest;
+}
+
+@function getSmallestBreakPointName()
+{
+	$smallestName: 'sm';
+	$smallestValue: false;
+
+	@if(list.length($breakPoints) >= 1)
+	{
+		@each $breakpointName, $value in $breakPoints
+		{
+			@if($smallestValue == false)
+			{
+				$smallestName: $breakpointName;
+				$smallestValue: $value;
+			}
+			@else if($smallestValue > $value)
+			{
+				$smallestName: $breakpointName;
+				$smallestValue: $value;
+			}
+		}
+	}
+
+	@return $smallestName;
+}
+
+@function generatedScalingByBreakpoints()
+{
+	$scalingRem: ();
+	$scalingFactor: 1;
+
+	$keys: map.keys($breakPoints);
+
+	@for $i from 1 through list.length($keys)
+	{
+		$currentKey: list.nth($keys, $i);
+		$currentValue: map.get($breakPoints, $currentKey);
+
+		@if($i < list.length($keys))
+		{
+			$nextKey: list.nth($keys, $i + 1);
+
+			$nextValue: map.get($breakPoints, $nextKey);
+			$scalingFactor: math.div($currentValue, $nextValue);
+		}
+		@else
+		{
+			$scalingFactor: math.div($currentValue, 1919.98); // Ends full HD 1920px
+		}
+
+		$scalingRem: map.merge($scalingRem, ($currentKey: $scalingFactor));
+	}
+
+	@return $scalingRem;
+}

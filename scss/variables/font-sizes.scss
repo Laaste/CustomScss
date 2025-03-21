@@ -1,0 +1,14 @@
+/**
+ * Pass single numeric value or map with named breakpoints: numeric value
+ *
+ * If map provided then can be specified default (as "default" or "value" key: numeric value
+ */ 
+$fontSizes:
+(
+	'text':
+	(
+		'sm': 14,
+		'md': 16,
+		'lg': 18
+	),
+);

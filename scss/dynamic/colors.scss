@@ -1,0 +1,109 @@
+@use "sass:list";
+
+$configColorClassPrefix: 'color';
+$configGenerateColorsClasses: true !default;
+$configGenerateColorsVariables: true !default;
+$configGenerateColorsPerBreakPoint: false !default;
+
+$configBgColorClassPrefix: 'bg-color' !default;
+$configGenerateBgColorsClasses: true !default;
+$configGenerateBgColorsPerBreakPoint: false !default;
+
+@mixin generateColorsClasses()
+{
+	@each $colorName, $colorValue in $colors
+	{
+		.#{$configColorClassPrefix}-#{$colorName}
+		{
+			color: $colorValue;
+		}
+	}
+
+	@if($configGenerateColorsPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $colorName, $colorValue in $colors
+				{
+					.#{$configColorClassPrefix}-#{$breakPointName}-#{$colorName}
+					{
+						color: $colorValue;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateBgColorsClasses()
+{
+	@each $colorName, $colorValue in $colors
+	{
+		.#{$configBgColorClassPrefix}-#{$colorName}
+		{
+			background-color: $colorValue;
+		}
+	}
+
+	@if($configGenerateBgColorsPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $colorName, $colorValue in $colors
+				{
+					.#{$configBgColorClassPrefix}-#{$breakPointName}-#{$colorName}
+					{
+						background-color: $colorValue;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateColorsVariables()
+{
+	:root
+	{
+		@each $colorName, $colorValue in $colors
+		{
+			--#{$configColorClassPrefix}-#{$colorName}: #{$colorValue};
+		}
+
+		@if ($configGenerateColorsPerBreakPoint
+		and length($breakPoints) >= 1)
+		{
+			@each $breakPointName, $breakPointValue in $breakPoints
+			{
+				@media(min-width: $breakPointValue + 'px')
+				{
+					@each $colorName, $colorValue in $colors
+					{
+						--#{$configColorClassPrefix}-#{$breakPointName}-#{$colorName}:  #{$colorValue};
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateColorsClasses
+{
+	@include generateColorsClasses();
+}
+
+@if $configGenerateColorsVariables
+{
+	@include generateColorsVariables();
+}
+
+@if $configGenerateBgColorsClasses
+{
+	@include generateBgColorsClasses();
+}

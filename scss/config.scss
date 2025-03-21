@@ -1,0 +1,101 @@
+// Basic unit for project
+$modUnit: 'rem';
+
+// #region Base
+$configVendors: true;
+
+$configGenerateScalingForRem: true;
+$configGenerateScalingForRemPerBreakPoint: true;
+
+$configGenerateScalingByVariables: false;
+
+//breakpoint as max value for scaling - scaling will not grow after this breakpoint
+// -1 to infinity
+$configGenerateScalingOnlyTo: -1;
+// #region Base
+
+// #region RowCols
+$configRowClassPrefix: 'row';
+
+$configGutterClassPrefix: 'gutter';
+$configGenerateGutters: true;
+$configGenerateGuttersPerBreakPoint: true;
+
+$configColumnClassPrefix: 'col';
+$configGenerateColumns: true;
+$configGenerateColumnsPerBreakPoint: true;
+
+$configOffsetClassPrefix: 'offset';
+$configGenerateOffsets: true;
+$configGenerateOffsetsPerBreakPoint: true;
+// #endregion RowCols
+
+// #region Display
+$configDisplayClassPrefix: 'd';
+$configGenerateDisplayClasses: true;
+$configGenerateDisplayPerBreakPoint: true;
+// #endregion Display
+
+// #region Flex
+$configFlexClassPrefix: 'flex';
+$configFlexJustifyPrefix: 'justify-content';
+$configFlexAlignItemsPrefix: 'align-items';
+$configFlexAlignSelfPrefix: 'align-self';
+$configGenerateFlexClasses: true;
+$configGenerateFlexPerBreakPoint: true;
+
+$configOrderPrefix: 'order';
+$configGenerateOrderClasses: false;
+$configGenrateOrderFirstAndLast: false;
+$configGenerateOrderPerBreakPoint: false;
+// #endregion Flex
+
+// #region Colors
+$configColorClassPrefix: 'color';
+$configGenerateColorsClasses: true;
+$configGenerateColorsVariables: true;
+$configGenerateColorsPerBreakPoint: false;
+
+$configBgColorClassPrefix: 'bg-color';
+$configGenerateBgColorsClasses: false;
+$configGenerateBgColorsPerBreakPoint: false;
+// #endregion Colors
+
+// #region FontSizes
+$configFontSizeClassPrefix: 'size';
+$configGenerateFontSizes: false;
+$configGenerateFontSizesVariables: true;
+$configGenerateFontSizesPerBreakPoint: false;
+// #endregion FontSizes
+
+// #region LineHeight
+$configLineHeightClassPrefix: 'lh';
+$configGenerateLineHeights: false;
+$configGenerateLineHeightsPerBreakPoint: false;
+// #endregion LineHeight
+
+// #region Spacings
+$configSpacingVariablePrefix: 'space';
+$configGenerateSpacingVariables: false;
+
+$configMarginClassPrefix: 'm';
+$configGenerateMargins: false;
+$configGenerateMarginsPerBreakPoint: false;
+$configGenerateMarginsPerDirection: false; //like mt, mr, mb, ml, mx, my;
+
+$configPaddingClassPrefix: 'p';
+$configGeneratePaddings: false;
+$configGeneratePaddingsPerBreakPoint: false;
+$configGeneratePaddingsPerDirection: false; //like pt, pr, pb, pl, px, py;
+// #endregion Spacings
+
+// #region FontFamily
+$configFontFilesPath: '@rootScss/../fonts';
+$configFontFamilyClassPrefix: 'family';
+$configGenerateFontFaces: true;
+$configGenerateFontFamilyClass: false;
+// #endregion FontFamily
+
+// #region Utility
+$configGenerateUtilitiClasses: true;
+// #endregion Utility

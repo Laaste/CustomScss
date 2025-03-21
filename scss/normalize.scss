@@ -1,0 +1,107 @@
+$configNormalize: true !default;
+
+@mixin normalize()
+{
+	html
+	{
+		font-family: sans-serif;
+	}
+
+	body
+	{
+		margin: 0;
+	}
+
+	*,
+	*::before,
+	*::after
+	{
+		box-sizing: border-box;
+	}
+
+	h1,h2,h3,h4,h5,h6
+	{
+		font-weight: 400;
+		margin: 0;
+	}
+
+	p, ol, ul
+	{
+		margin: 0;
+		padding: 0;
+		margin-block-start: 0;
+		margin-block-end: 0;
+		padding-inline-start: 0;
+	}
+
+	input
+	{
+		font-family: inherit;
+		border: none;
+		margin: 0;
+		padding: 0;
+		outline-style: none;
+		min-width: 0;
+	}
+
+	input::placeholder
+	{
+		font-family: inherit;
+	}
+
+	form
+	{
+		display: block;
+	}
+
+	a
+	{
+		text-decoration: none;
+		cursor: pointer;
+		transition: all .2s linear;
+	}
+
+	button
+	{
+		cursor: pointer;
+		font-family: inherit;
+		border: none;
+		outline: none;
+		text-align: left;
+		color: inherit;
+		background-color: transparent;
+		-webkit-appearance: none !important;
+		-moz-appearance: none !important;
+		appearance: none !important;
+		padding-block: 0;
+		padding-inline: 0;
+		transition: all .2s linear;
+	}
+
+	label
+	{
+		margin: 0;
+		font-weight: 400;
+	}
+
+	textarea
+	{
+		padding: 0;
+		outline: none;
+	}
+
+	img
+	{
+		display: block;
+	}
+
+	iframe
+	{
+		border: none;
+	}
+}
+
+@if $configNormalize
+{
+	@include normalize();
+}

@@ -1,0 +1,43 @@
+@use "sass:math";
+
+// For example u may add here importing tailwind parts
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+@import '@rootScss/config.scss';
+@import '@rootScss/functions.scss';
+
+:root
+{
+	@mixin generateScalingVariables()
+	{
+		--viewWidth: 1920; //max-width of view in pixels //possible its fixed by js
+		--modScale: 1920; //scaling variable
+	}
+
+	@if $configGenerateScalingByVariables
+	{
+		@include generateScalingVariables();
+	}
+}
+
+/**
+ * Note that if ur using just px or rem u probably dont need wrap every value by val({value}) it's purpose it's more like for handling vw or so...
+ */
+@function val($value, $unit: $modUnit)
+{
+	@if $configGenerateScalingByVariables
+	{
+		@return unquote('calc(#{$value}#{$unit} / var(--modScale) * var(--viewWidth))');
+	}
+	@else
+	{
+		@return #{$value}#{$unit};
+	}
+}
+
+@import '@rootScss/normalize.scss';
+@import '@rootScss/variables.scss';
+@import '@rootScss/custom.scss';
+@import '@rootScss/dynamic.scss';

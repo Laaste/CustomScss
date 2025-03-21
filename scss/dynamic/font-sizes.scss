@@ -1,0 +1,153 @@
+@use "sass:list";
+@use "sass:map";
+
+$configFontSizeClassPrefix: 'size' !default;
+$configGenerateFontSizes: true !default;
+$configGenerateFontSizesVariables: true !default;
+$configGenerateFontSizesPerBreakPoint: true !default;
+
+$configLineHeightClassPrefix: 'lh' !default;
+$configGenerateLineHeights: false !default;
+$configGenerateLineHeightsPerBreakPoint: false !default;
+
+@function getLargestFontValue($sizes)
+{
+	$largest: 0;
+
+	@each $breakpointName, $value in $sizes
+	{
+		@if $largest < $value
+		{
+			$largest: $value;
+		}
+	}
+
+	@return $largest;
+}
+
+@function getDefaultValue($sizes)
+{
+	@if type-of($sizes) == 'map'
+	{
+		@if map-has-key($sizes, 'default')
+		{
+			@return map.get($sizes, 'default');
+		}
+		@else if map-has-key($sizes, 'value')
+		{
+			@return map.get($sizes, 'value');
+		}
+		@else
+		{
+			@return getLargestFontValue($sizes);
+		}
+	}
+	@else
+	{
+		@return $sizes;
+	}
+}
+
+@mixin generateFontSizes()
+{
+	@each $fontSizeName, $fontSizeValues in $fontSizes
+	{
+		$default: getDefaultValue($fontSizeValues);
+
+		.#{$configFontSizeClassPrefix}-#{$fontSizeName}
+		{
+			font-size: val($default);
+		}
+	}
+
+	@if($configGenerateFontSizesPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPoint, $breakPointValue in $breakPoints
+		{
+			@media(min-width: map.get($breakPoints, $breakPoint) + 'px')
+			{
+				@each $fontSizeName, $fontSizeValues in $fontSizes
+				{
+					.#{$configFontSizeClassPrefix}-#{$breakPoint}-#{$fontSizeName}
+					{
+						font-size: map.get(map.get($fontSizes, $fontSizeName), $breakPoint);
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateLineHeights()
+{
+	@each $lineHeightName, $lineHeightValues in $lineHeights
+	{
+		$default: getDefaultValue($lineHeightValues);
+
+		.#{$configLineHeightClassPrefix}-#{$lineHeightName}
+		{
+			line-height: val($default);
+		}
+	}
+
+	@if($configGenerateLineHeightsPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPoint, $breakPointValue in $breakPoints
+		{
+			@media(min-width: map.get($breakPoints, $breakPoint) + 'px')
+			{
+				@each $lineHeightName, $lineHeightValues in $lineHeights
+				{
+					.#{$configLineHeightClassPrefix}-#{$breakPoint}-#{$lineHeightName}
+					{
+						line-height: map.get(map.get($lineHeights, $lineHeightName), $breakPoint);
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateFontSizesVariables()
+{
+	:root
+	{
+		@each $fontSizeName, $fontSizeValues in $fontSizes
+		{
+			$default: getDefaultValue($fontSizeValues);
+
+			--#{$configFontSizeClassPrefix}-#{$fontSizeName}: #{$default};
+		}
+
+		@if $configGenerateFontSizesPerBreakPoint and list.length($breakPoints) >= 1
+		{
+			@each $breakPointName, $breakPointValue in $breakPoints // Fixed variable name
+			{
+				@media (min-width: map.get($breakPoints, $breakPointName) + 'px')
+				{
+					@each $fontSizeName, $fontSizeValues in $fontSizes
+					{
+						--#{$configFontSizeClassPrefix}-#{$fontSizeName}: #{map.get($fontSizeValues, $breakPointName)};
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateFontSizes
+{
+	@include generateFontSizes();
+}
+
+@if $configGenerateLineHeights
+{
+	@include generateLineHeights();
+}
+
+@if $configGenerateFontSizesVariables
+{
+	@include generateFontSizesVariables();
+}

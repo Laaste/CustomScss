@@ -1,0 +1,33 @@
+@use "sass:list";
+@use "sass:map";
+
+@function reverse($map)
+{
+	$result: null;
+
+	@if type-of($map) == "map"
+	{
+		$keys: map.keys($map);
+		$map-reversed: ();
+
+		@for $i from list.length($keys) through 1
+		{
+			$map-reversed: map.merge($map-reversed, (list.nth($keys, $i): map.get($map, list.nth($keys, $i))));
+		}
+
+		@if type-of($map-reversed) == "map"
+		{
+			$result: $map-reversed;
+		}
+		@else
+		{
+			@warn 'There was an error reversing the order of "#{$map}"';
+		}
+	}
+	@else
+	{
+		@warn '"#{$map}" is not a valid map';
+	}
+
+	@return $result;
+}

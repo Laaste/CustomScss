@@ -1,0 +1,32 @@
+/**
+ * Gutters value should be keept as an number cause it will be wrapped in val function for negative margins
+ */
+$gutters:
+(
+	'0': 0,
+	'16': 16,
+	'20': 20,
+);
+
+/**
+ * Columns values should contain unit if needed wrap in val to use native calculations
+ * - those values are are used for offset
+ */
+$columns:
+(
+	'1': '8.3333%',
+	'1-10': '10%',
+	'2': '16.6667%',
+	'1-5': '20%',
+	'3': '25%',
+	'4': '33.3333%',
+	'5': '41.6667%',
+	'6': '50%',
+	'7': '58.3333%',
+	'8': '66.6667%',
+	'9': '75%',
+	'10': '83.3333%',
+	'11': '91.6667%',
+	'12': '100%',
+	// "150": val(150),
+);

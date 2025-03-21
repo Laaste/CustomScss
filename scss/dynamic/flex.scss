@@ -1,0 +1,206 @@
+@use "sass:list";
+@use "sass:map";
+
+$configFlexClassPrefix: 'flex' !default;
+$configFlexJustifyPrefix: 'justify-content' !default;
+$configFlexAlignItemsPrefix: 'align-items' !default;
+$configFlexAlignSelfPrefix: 'align-self' !default;
+$configGenerateFlexClasses: true !default;
+$configGenerateFlexPerBreakPoint: true !default;
+
+$configOrderPrefix: 'order' !default;
+$configGenerateOrderClasses: true !default;
+$configGenrateOrderFirstAndLast: true !default;
+$configGenerateOrderPerBreakPoint: true !default;
+
+@mixin generateFlexClasses()
+{
+	@each $direction in $flexDirections
+	{
+		.#{$configFlexClassPrefix}-#{$direction}
+		{
+			flex-direction: #{$direction};
+		}
+	}
+
+	@each $wrap in $flexWrap
+	{
+		.#{$configFlexClassPrefix}-#{$wrap}
+		{
+			flex-wrap: #{$wrap};
+		}
+	}
+
+	@each $grow in $flexGrowValues
+	{
+		@each $shrink in $flexShrinkValues
+		{
+			@each $basis in $flexBasisValues
+			{
+				.flex-#{$grow}-#{$shrink}-#{$basis}
+				{
+					flex: #{$grow} #{$shrink} #{$basis};
+				}
+			}
+		}
+	}
+
+	@each $justifyName, $justify in $flexJustifyContent
+	{
+		.#{$configFlexJustifyPrefix}-#{$justifyName}
+		{
+			justify-content: #{$justify};
+		}
+	}
+
+	@each $alignItemsName, $alignItems in $flexAlignItems
+	{
+		.#{$configFlexAlignItemsPrefix}-#{$alignItemsName}
+		{
+			align-items: #{$alignItems};
+		}
+	}
+
+	@each $alignSelfName, $alignSelf in $flexAlignSelf
+	{
+		.#{$configFlexAlignSelfPrefix}-#{$alignSelfName}
+		{
+			align-self: #{$alignSelf};
+		}
+	}
+
+	@if $configGenerateFlexPerBreakPoint
+	and list.length($breakPoints) >= 1
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $direction in $flexDirections
+				{
+					.#{$configFlexClassPrefix}-#{$breakPointName}-#{$direction}
+					{
+						flex-direction: #{$direction};
+					}
+				}
+
+				@each $wrap in $flexWrap
+				{
+					.#{$configFlexClassPrefix}-#{$breakPointName}-#{$wrap}
+					{
+						flex-wrap: #{$wrap};
+					}
+				}
+
+				@each $grow in $flexGrowValues
+				{
+					@each $shrink in $flexShrinkValues
+					{
+						@each $basis in $flexBasisValues
+						{
+							.flex-#{$breakPointName}-#{$grow}-#{$shrink}-#{$basis}
+							{
+								flex: #{$grow} #{$shrink} #{$basis};
+							}
+						}
+					}
+				}
+
+				@each $justifyName, $justify in $flexJustifyContent
+				{
+					.#{$configFlexJustifyPrefix}-#{$breakPointName}-#{$justifyName}
+					{
+						justify-content: #{$justify};
+					}
+				}
+
+				@each $alignItemsName, $alignItems in $flexAlignItems
+				{
+					.#{$configFlexAlignItemsPrefix}-#{$breakPointName}-#{$alignItemsName}
+					{
+						align-items: #{$alignItems};
+					}
+				}
+
+				@each $alignSelfName, $alignSelf in $flexAlignSelf
+				{
+					.#{$configFlexAlignSelfPrefix}-#{$breakPointName}-#{$alignSelfName}
+					{
+						align-self: #{$alignSelf};
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateOrder()
+{
+	$minOrder: map.get($flexOrder, 'min');
+	$maxOrder: map.get($flexOrder, 'max');
+
+	@for $orderNo from $minOrder through $maxOrder
+	{
+		.#{$configOrderPrefix}-#{$orderNo}
+		{
+			order: #{$orderNo};
+		}
+	}
+
+	@if $configGenrateOrderFirstAndLast
+	{
+		.#{$configOrderPrefix}-first
+		{
+			order: $minOrder;
+		}
+
+		.#{$configOrderPrefix}-last
+		{
+			order: $maxOrder;
+		}
+	}
+
+	@if $configGenerateOrderPerBreakPoint
+	and $configGenerateFlexPerBreakPoint
+	and list.length($breakPoints) >= 1
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@for $orderNo from $minOrder through $maxOrder
+				{
+					.#{$configOrderPrefix}-#{$breakPointName}-#{$orderNo}
+					{
+						order: #{$orderNo};
+					}
+				}
+
+				@if $configGenrateOrderFirstAndLast
+				{
+					.#{$configOrderPrefix}-#{$breakPointName}-first
+					{
+						order: $minOrder;
+					}
+
+					.#{$configOrderPrefix}-#{$breakPointName}-last
+					{
+						order: $maxOrder;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateFlexClasses
+{
+	@include generateFlexClasses();
+}
+
+@if $configGenerateFlexClasses
+and $configGenerateOrderClasses
+{
+	@include generateOrder();
+}
+

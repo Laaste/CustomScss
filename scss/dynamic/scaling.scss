@@ -1,0 +1,72 @@
+@use "sass:list";
+
+$configGenerateScalingByVariables: false !default;
+$configGenerateScalingForRem: false !default;
+
+$configGenerateScalingForRemPerBreakPoint: false !default;
+
+$configGenerateScalingOnlyTo: -1 !default; //max-width for scaling
+
+@mixin generateScalingVariables()
+{
+	@if(list.length($breakPoints) >= 1)
+	{
+		@each $breakpointName, $breakPointValue in reverse($breakPoints)
+		{
+			$toBreakPoint: $breakPointValue - 0.02;
+
+			@media(max-width: $toBreakPoint + $modUnit)
+			{
+				--modScale: #{$toBreakPoint};
+			}
+		}
+	}
+}
+
+@mixin generateGenerateScalingForRem()
+{
+	$defaultScalingDivider: getSmallestBreakPoint();
+	$largetstBreakPoints: getLargestBreakPoint();
+
+	html
+	{
+		@if list.length($breakPoints) >= 1
+		{
+			font-size: calc($scalingRemDefault / $defaultScalingDivider * 100vw);
+
+			@if ($configGenerateScalingForRemPerBreakPoint
+			and list.length($breakPoints) >= 1)
+			{
+				@each $breakPointName, $scalingValue in $scalingRem
+				{
+					$breakPointValue: getBreakPointValue($breakPointName);
+
+					@media(min-width: $breakPointValue + 'px')
+					{
+						font-size: calc($scalingValue / $breakPointValue * 100vw);
+					}
+
+					// stop scaling from grow at configGenerateScalingOnlyTo
+					@if ($configGenerateScalingOnlyTo != -1)
+					and ($largetstBreakPoints == $breakPointValue)
+					{
+						@media(min-width: ($configGenerateScalingOnlyTo + 'px'))
+						{
+							font-size: 1px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateScalingByVariables
+{
+	@include generateScalingVariables();
+}
+
+@if $configGenerateScalingForRem
+{
+	@include generateGenerateScalingForRem();
+}

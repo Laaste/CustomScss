@@ -1,0 +1,1 @@
+This directory purpose is to store common configurations to import into variables

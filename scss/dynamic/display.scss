@@ -1,0 +1,36 @@
+$configDisplayClassPrefix: 'd' !default;
+$configGenerateDisplayClasses: true !default;
+$configGenerateDisplayPerBreakPoint: true !default;
+
+@mixin generateDisplayClasses()
+{
+	@each $display in $displays
+	{
+		.#{$configDisplayClassPrefix}-#{$display}
+		{
+			display: #{$display};
+		}
+	}
+
+	@if $configGenerateDisplayPerBreakPoint
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $display in $displays
+				{
+					.#{$configDisplayClassPrefix}-#{$breakPointName}-#{$display}
+					{
+						display: #{$display};
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateDisplayClasses
+{
+	@include generateDisplayClasses();
+}

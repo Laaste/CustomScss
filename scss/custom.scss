@@ -1,0 +1,12 @@
+@import "@rootScss/config.scss";
+@import "@rootScss/variables.scss";
+@import "@rootScss/functions.scss";
+
+///////////////////////////////////
+// #region base
+body {
+	font-family: "Poppins", Arial, Helvetica, sans-serif;
+	font-size: 16rem;
+	background-color: #f7e8fe;
+	color: #054f84;
+}

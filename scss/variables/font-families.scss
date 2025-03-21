@@ -1,0 +1,26 @@
+@use "sass:map";
+
+/* EXAMPLE */
+/* Font_directory:
+ * (
+		'class-name-for-family':
+ * 		(
+ * 			'src': FontFileName.extension, // or map like (FontFileName.extension, FontFileName2.otherExtension)
+ * 			'sans-serif': false, //added by default can be disabled
+ * 			'params':
+ * 			(
+ * 				'font-weight': 400,
+ * 				'font-style': 'italic',
+ * 				'font-stretch': 'condensed',
+ * 			)
+ * 		)
+ * )
+ */
+
+$fontFamilies: ();
+
+//  @import '@rootScss/presetdata/font-families/Georgia.scss';
+//  @import '@rootScss/presetdata/font-families/Century-Gothic.scss';
+
+//  $fontFamilies: map.merge($fontFamilies, $familyGeorgia);
+//  $fontFamilies: map.merge($fontFamilies, $familyCenturyGothic);

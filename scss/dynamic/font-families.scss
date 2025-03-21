@@ -1,0 +1,153 @@
+@use "sass:map";
+
+$configFontFilesPath: '@rootScss/../fonts' !default;
+$configFontFamilyClassPrefix: 'family' !default;
+$configGenerateFontFaces: true !default;
+$configGenerateFontFamilyClass: false !default;
+
+@function getFontFormat($fileName)
+{
+	$extension: getFileExtensions($fileName);
+
+	@if $extension == 'otf'
+	{
+		@return 'opentype';
+	}
+	@else if $extension == 'ttf'
+	{
+		@return 'truetype';
+	}
+	@else if $extension == 'eot'
+	{
+		@return 'embedded-opentype';
+	}
+	@else
+	{
+		@return $extension;
+	}
+}
+
+@function getSrcPath($fontFamily, $src)
+{
+	@return $configFontFilesPath + '/' + $fontFamily + '/' + $src;
+}
+
+@function getFontSrc($fontFamilyName, $font)
+{
+	$src: map.get($font, 'src');
+
+	@if type-of($src) != 'map'
+	and type-of($src) != 'list'
+	{
+		$srcPath: getSrcPath($fontFamilyName, $src);
+		$srcExtension: getFileExtensions($src);
+
+		$computed: '';
+		// $computed: $computed + 'local("' + $fontFamilyName + '")';
+		$computed: $computed + ' url("' + $srcPath + '")';
+		$computed: $computed + ' format("' + $srcExtension + '")';
+
+		@return $computed;
+	}
+	@else
+	{
+		$computed: '';
+		// $computed: $computed + ' local("' + $fontFamilyName + '")';
+
+		$iterator: 0;
+
+		@each $source in $src
+		{
+			$srcPath: getSrcPath($fontFamilyName, $source);
+			$srcExtension: getFileExtensions($source);
+
+			$computed: $computed + ' url("' + $srcPath + '")';
+			$computed: $computed + ' format("' + $srcExtension + '")';
+
+			@if $iterator != (length($src) - 1)
+			{
+				$computed: $computed + ',';
+			}
+
+			$iterator: $iterator + 1;
+		}
+
+		@return $computed;
+	}
+}
+
+@function getSansSerif($font)
+{
+	@if map-has-key($font, 'sans-serif')
+	{
+		$sansSerif: map.get($font, 'sans-serif');
+
+		@if($sansSerif)
+		{
+			@return ', sans-serif';
+		}
+		@else
+		{
+			@return '';
+		}
+	}
+	@else
+	{
+		@return ', sans-serif';
+	}
+}
+
+@mixin generateFontFaces()
+{
+	@each $fontFamilyName, $fontFamily in $fontFamilies
+	{
+		@each $fontClassName, $font in $fontFamily
+		{
+			@font-face
+			{
+				font-family: #{'"' + $fontFamilyName + '"' + getSansSerif($font)};
+				src: #{getFontSrc($fontFamilyName, $font)};
+
+				@if map-has-key($font, 'params')
+				{
+					@each $param, $value in map.get($font, 'params')
+					{
+						#{$param}: #{$value};
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateFontFamilyClasses()
+{
+	@each $fontFamilyName, $fontFamily in $fontFamilies
+	{
+		@each $fontClassName, $font in $fontFamily
+		{
+			.#{$configFontFamilyClassPrefix}-#{$fontClassName}
+			{
+				font-family: #{'"' + $fontFamilyName + '"' + getSansSerif($font)};
+
+				@if map-has-key($font, 'params')
+				{
+					@each $param, $value in map.get($font, 'params')
+					{
+						#{$param}: #{$value};
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateFontFaces
+{
+	@include generateFontFaces();
+}
+
+@if $configGenerateFontFamilyClass
+{
+	@include generateFontFamilyClasses();
+}

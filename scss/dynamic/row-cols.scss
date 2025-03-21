@@ -1,0 +1,150 @@
+@use "sass:list";
+
+$configRowClassPrefix: 'row' !default;
+
+$configGutterClassPrefix: 'gutter' !default;
+$configGenerateGutters: true !default;
+$configGenerateGuttersPerBreakPoint: true !default;
+
+$configColumnClassPrefix: 'col' !default;
+$configGenerateColumns: true !default;
+$configGenerateColumnsPerBreakPoint: true !default;
+
+$configOffsetClassPrefix: 'offset' !default;
+$configGenerateOffsets: true !default;
+$configGenerateOffsetsPerBreakPoint: true !default;
+
+@mixin generateGutters()
+{
+	.#{$configRowClassPrefix}
+	{
+		margin-right: val(-16);
+		margin-left: val(-16);
+		display: flex;
+		flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+
+		& > *
+		{
+			padding-right: val(16);
+			padding-left: val(16);
+		}
+
+		@each $name, $value in $gutters
+		{
+			&.#{$configGutterClassPrefix}-#{$name}
+			{
+				margin-right: val($value * -1);
+				margin-left: val($value * -1);
+
+				> .#{$configColumnClassPrefix},
+				> [class*=#{$configColumnClassPrefix}-]
+				{
+					padding-right: val($value);
+					padding-left: val($value);
+				}
+			}
+		}
+
+		@if ($configGenerateGuttersPerBreakPoint
+		and list.length($breakPoints) >= 1)
+		{
+			@each $breakPointName, $breakPointValue in $breakPoints
+			{
+				@media(min-width: $breakPointValue + 'px')
+				{
+					@each $name, $value in $gutters
+					{
+						&.#{$configGutterClassPrefix}-#{$breakPointName}-#{$name}
+						{
+							margin-right: val($value * -1);
+							margin-left: val($value * -1);
+
+							> .#{$configColumnClassPrefix}, 
+							> [class*=#{$configColumnClassPrefix}-]
+							{
+								padding-right: val($value);
+								padding-left: val($value);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateColumns()
+{
+	@each $name, $value in $columns
+	{
+		.#{$configColumnClassPrefix}-#{$name}
+		{
+			width: 100%;
+			flex: 0 0 #{$value};
+			max-width: #{$value};
+		}
+	}
+
+	@if $configGenerateColumnsPerBreakPoint
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $name, $value in $columns
+				{
+					.#{$configColumnClassPrefix}-#{$breakPointName}-#{$name}
+					{
+						width: 100%;
+						flex: 0 0 #{$value};
+						max-width: #{$value};
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateOffsets()
+{
+	@each $name, $value in $columns
+	{
+		.#{$configOffsetClassPrefix}-#{$name}
+		{
+			margin-left: #{$value};
+		}
+	}
+
+	@if $configGenerateOffsetsPerBreakPoint
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $name, $value in $columns
+				{
+					.#{$configOffsetClassPrefix}-#{$breakPointName}-#{$name}
+					{
+						margin-left: #{$value};
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateGutters
+{
+	@include generateGutters();
+}
+
+@if $configGenerateColumns
+{
+	@include generateColumns();
+}
+
+@if $configGenerateOffsets
+{
+	@include generateOffsets();
+}
