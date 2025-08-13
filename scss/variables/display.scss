@@ -1,5 +1,5 @@
 $displays: (
-	/* precomposed values */
+	// Precomposed values
 	'block',
 	'inline',
 	'inline-block',
@@ -9,11 +9,11 @@ $displays: (
 	'inline-grid',
 	// 'flow-root',
 
-	/* box generation */
+	// Box generation
 	'none',
 	// 'contents',
 
-	/* multi-keyword syntax */
+	// multi-keyword syntax
 	// 'block flex',
 	// 'block flow',
 	// 'block flow-root',
@@ -23,12 +23,12 @@ $displays: (
 	// 'inline flow-root',
 	// 'inline grid',
 
-	/* other values */
+	// Other values
 	'table',
 	// 'table-row',
 	// 'list-item',
 
-	/* Global values */
+	// Global values
 	// 'inherit',
 	// 'initial',
 	// 'revert',

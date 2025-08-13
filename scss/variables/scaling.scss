@@ -1,18 +1,12 @@
-/**
- * Keep from smallest to biggest
- * scaling value should be calculated of (current break point min / next breakpoint min)
- */
+// Keep from smallest to biggest
+// scaling value should be calculated of (current break point min / next breakpoint min)
 
 $scalingRemDefault: 1; //min-0px -> basic
 
-/** 
- * use dynamic assign by breakpoints or assign your custom map of 
- */
+// use dynamic assign by breakpoints or assign your custom map of 
 $scalingRem: generatedScalingByBreakpoints();
 
-/**
- * Bootstrap like
- */
+// Bootstrap like
 // $scalingRem:
 // (
 // 	'xs': 1,             // basic project 376 min-0px
@@ -21,9 +15,8 @@ $scalingRem: generatedScalingByBreakpoints();
 // );
 
 
-/**
- * Tailwind like
- */
+// Tailwind like
+//
 // $scalingRem:
 // (
 // 	'xs': 0.89999,   // Base 376px (575.98/ 639.98)

@@ -1,0 +1,332 @@
+$familyNotoSansSemiCondenset:
+(
+	'Noto Sans SemiCondensed':
+	(
+		'noto-thin':
+		(
+			'src': 'NotoSans-Thin.ttf',
+			'params':
+			(
+				'font-weight': 100,
+				'font-style': 'normal'
+			)
+		),
+		'noto-thin-italic':
+		(
+			'src': 'NotoSans-ThinItalic.ttf',
+			'params':
+			(
+				'font-weight': 100,
+				'font-style': 'italic'
+			)
+		),
+		'noto-extra-light':
+		(
+			'src': 'NotoSans-ExtraLight.ttf',
+			'params':
+			(
+				'font-weight': 200,
+				'font-style': 'normal'
+			)
+		),
+		'noto-extra-light-italic':
+		(
+			'src': 'NotoSans-ExtraLightItalic.ttf',
+			'params':
+			(
+				'font-weight': 200,
+				'font-style': 'italic'
+			)
+		),
+		'noto-light':
+		(
+			'src': 'NotoSans-Light.ttf',
+			'params':
+			(
+				'font-weight': 300,
+				'font-style': 'normal'
+			)
+		),
+		'noto-light-italic':
+		(
+			'src': 'NotoSans-LightItalic.ttf',
+			'params':
+			(
+				'font-weight': 300,
+				'font-style': 'italic'
+			)
+		),
+		'noto-regular':
+		(
+			'src': 'NotoSans-Regular.ttf',
+			'params':
+			(
+				'font-weight': 400,
+				'font-style': 'normal'
+			)
+		),
+		'noto-italic':
+		(
+			'src': 'NotoSans-Italic.ttf',
+			'params':
+			(
+				'font-weight': 400,
+				'font-style': 'italic'
+			)
+		),
+		'noto-medium':
+		(
+			'src': 'NotoSans-Medium.ttf',
+			'params':
+			(
+				'font-weight': 500,
+				'font-style': 'normal'
+			)
+		),
+		'noto-medium-italic':
+		(
+			'src': 'NotoSans-MediumItalic.ttf',
+			'params':
+			(
+				'font-weight': 500,
+				'font-style': 'italic'
+			)
+		),
+		'noto-semi-bold':
+		(
+			'src': 'NotoSans-SemiBold.ttf',
+			'params':
+			(
+				'font-weight': 600,
+				'font-style': 'normal'
+			)
+		),
+		'noto-semi-bold-italic':
+		(
+			'src': 'NotoSans-SemiBoldItalic.ttf',
+			'params':
+			(
+				'font-weight': 600,
+				'font-style': 'italic'
+			)
+		),
+		'noto-bold':
+		(
+			'src': 'NotoSans-Bold.ttf',
+			'params':
+			(
+				'font-weight': 700,
+				'font-style': 'normal'
+			)
+		),
+		'noto-bold-italic':
+		(
+			'src': 'NotoSans-BoldItalic.ttf',
+			'params':
+			(
+				'font-weight': 700,
+				'font-style': 'italic'
+			)
+		),
+		'noto-black':
+		(
+			'src': 'NotoSans-Black.ttf',
+			'params':
+			(
+				'font-weight': 900,
+				'font-style': 'normal'
+			)
+		),
+		'noto-black-italic':
+		(
+			'src': 'NotoSans-BlackItalic.ttf',
+			'params':
+			(
+				'font-weight': 900,
+				'font-style': 'italic'
+			)
+		),
+
+		// SemiCondensed
+		'noto-semicondensed-thin':
+		(
+			'src': 'NotoSans-SemiCondensedThin.ttf',
+			'params':
+			(
+				'font-weight': 100,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-thin-italic':
+		(
+			'src': 'NotoSans-SemiCondensedThinItalic.ttf',
+			'params':
+			(
+				'font-weight': 100,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-extralight':
+		(
+			'src': 'NotoSans-SemiCondensedExtraLight.ttf',
+			'params':
+			(
+				'font-weight': 200,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-extralight-italic':
+		(
+			'src': 'NotoSans-SemiCondensedExtraLightItalic.ttf',
+			'params':
+			(
+				'font-weight': 200,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-light':
+		(
+			'src': 'NotoSans-SemiCondensedLight.ttf',
+			'params':
+			(
+				'font-weight': 300,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-light-italic':
+		(
+			'src': 'NotoSans-SemiCondensedLightItalic.ttf',
+			'params':
+			(
+				'font-weight': 300,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed':
+		(
+			'src': 'NotoSans-SemiCondensed.ttf',
+			'params':
+			(
+				'font-weight': 400,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-italic':
+		(
+			'src': 'NotoSans-SemiCondensedItalic.ttf',
+			'params':
+			(
+				'font-weight': 400,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-medium':
+		(
+			'src': 'NotoSans-SemiCondensedMedium.ttf',
+			'params':
+			(
+				'font-weight': 500,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-medium-italic':
+		(
+			'src': 'NotoSans-SemiCondensedMediumItalic.ttf',
+			'params':
+			(
+				'font-weight': 500,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-semibold':
+		(
+			'src': 'NotoSans-SemiCondensedSemiBold.ttf',
+			'params':
+			(
+				'font-weight': 600,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-semibold-italic':
+		(
+			'src': 'NotoSans-SemiCondensedSemiBoldItalic.ttf',
+			'params':
+			(
+				'font-weight': 600,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-bold':
+		(
+			'src': 'NotoSans-SemiCondensedBold.ttf',
+			'params':
+			(
+				'font-weight': 700,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-bold-italic':
+		(
+			'src': 'NotoSans-SemiCondensedBoldItalic.ttf',
+			'params':
+			(
+				'font-weight': 700,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-extrabold':
+		(
+			'src': 'NotoSans-SemiCondensedExtraBold.ttf',
+			'params':
+			(
+				'font-weight': 800,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-extrabold-italic':
+		(
+			'src': 'NotoSans-SemiCondensedExtraBoldItalic.ttf',
+			'params':
+			(
+				'font-weight': 800,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-black':
+		(
+			'src': 'NotoSans-SemiCondensedBlack.ttf',
+			'params':
+			(
+				'font-weight': 900,
+				'font-style': 'normal',
+				'font-stretch': 'semi-condensed'
+			)
+		),
+		'noto-semicondensed-black-italic':
+		(
+			'src': 'NotoSans-SemiCondensedBlackItalic.ttf',
+			'params':
+			(
+				'font-weight': 900,
+				'font-style': 'italic',
+				'font-stretch': 'semi-condensed'
+			)
+		)
+	)
+);

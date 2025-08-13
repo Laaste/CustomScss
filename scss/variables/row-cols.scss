@@ -1,6 +1,4 @@
-/**
- * Gutters value should be keept as an number cause it will be wrapped in val function for negative margins
- */
+// Gutters value should be keept as an number cause it will be wrapped in val function for negative margins
 $gutters:
 (
 	'0': 0,
@@ -8,10 +6,8 @@ $gutters:
 	'20': 20,
 );
 
-/**
- * Columns values should contain unit if needed wrap in val to use native calculations
- * - those values are are used for offset
- */
+// Columns values should contain unit if needed wrap in val to use native calculations
+// - those values are are used for offset
 $columns:
 (
 	'1': '8.3333%',

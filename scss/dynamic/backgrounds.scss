@@ -1,0 +1,110 @@
+@use "sass:list";
+
+$configBgClassPrefix: 'bg' !default;
+$configGenerateBgPositions: true !default;
+$configGenerateBgRepeats: false !default;
+$configGenerateBgSizes: false !default;
+
+$configGenerateBgPerBreakPoint: false !default;
+
+@mixin generateBgPositions
+{
+	@each $key, $value in $background-positions
+	{
+		.#{$configBgClassPrefix}-pos-#{$key}
+		{
+			background-position: $value;
+		}
+	}
+
+	@if($configGenerateBgPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $key, $value in $background-positions
+				{
+					.#{$configBgClassPrefix}-pos-#{$breakPointName}-#{$key}
+					{
+						background-position: $value;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateBgRepeats
+{
+	@each $key, $value in $background-repeats
+	{
+		.#{$configBgClassPrefix}-repeat-#{$key}
+		{
+			background-position: $value;
+		}
+	}
+
+	@if($configGenerateBgPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $key, $value in $background-repeats
+				{
+					.#{$configBgClassPrefix}-repeat-#{$breakPointName}-#{$key}
+					{
+						background-position: $value;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin generateBgSizes
+{
+	@each $key, $value in $background-sizes
+	{
+		.#{$configBgClassPrefix}-size-#{$key}
+		{
+			background-position: $value;
+		}
+	}
+
+	@if($configGenerateBgPerBreakPoint
+	and list.length($breakPoints) >= 1)
+	{
+		@each $breakPointName, $breakPointValue in $breakPoints
+		{
+			@media(min-width: $breakPointValue + 'px')
+			{
+				@each $key, $value in $background-sizes
+				{
+					.#{$configBgClassPrefix}-size-#{$breakPointName}-#{$key}
+					{
+						background-position: $value;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $configGenerateBgPositions
+{
+	@include generateBgPositions();
+}
+
+@if $configGenerateBgRepeats
+{
+	@include generateBgRepeats();
+}
+
+@if $configGenerateBgSizes
+{
+	@include generateBgSizes();
+}

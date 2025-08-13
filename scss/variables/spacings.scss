@@ -1,14 +1,12 @@
-/**
- * Directions will be prefixed
- * so if prefix is "m" and providing "t" for top will be mt
- * allowed directions are:
- * ~ t -> top
- * ~ r -> right
- * ~ b -> bottom
- * ~ l -> left
- * ~ x -> left and right
- * ~ y -> top and bottom
- */
+// Directions will be prefixed
+// so if prefix is "m" and providing "t" for top will be mt
+// allowed directions are:
+// ~ t -> top
+// ~ r -> right
+// ~ b -> bottom
+// ~ l -> left
+// ~ x -> left and right
+// ~ y -> top and bottom
 
 $configGenerateMarginsDirection: (
 	't',

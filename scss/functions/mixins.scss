@@ -1,0 +1,6 @@
+@mixin background-blur($blur, $brightnessx, $opacity)
+{
+	backdrop-filter: blur(#{$blur}rem) brightness(#{1 + ($brightness / 100)});
+	-webkit-backdrop-filter: blur(#{$blur}rem) brightness(#{1 + ($brightness / 100)});
+	opacity: #{($opacity / 100)};
+}

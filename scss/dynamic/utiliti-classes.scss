@@ -95,6 +95,14 @@
 		appearance: none;
 		-webkit-appearance: none;
 	}
+
+	$positions: static, relative, absolute, fixed, sticky;
+
+	@each $pos in $positions {
+		.#{$pos} {
+			position: $pos;
+		}
+	}
 }
 
 @if $configGenerateUtilitiClasses

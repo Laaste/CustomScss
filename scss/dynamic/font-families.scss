@@ -1,6 +1,6 @@
 @use "sass:map";
 
-$configFontFilesPath: '@rootScss/../fonts' !default;
+$configFontFilesPath: '#{$assetsPath}/fonts' !default;
 $configFontFamilyClassPrefix: 'family' !default;
 $configGenerateFontFaces: true !default;
 $configGenerateFontFamilyClass: false !default;

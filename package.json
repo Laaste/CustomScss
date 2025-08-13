@@ -20,7 +20,7 @@
 		"webpack-fix-style-only-entries": "^0.6.1"
 	},
 	"dependencies": {
-		"glob": "^7.2.3",
+		"glob": "^10.4.2",
 		"normalize-css": "^2.3.1"
 	}
 }

@@ -1,0 +1,23 @@
+@use "sass:math";
+// Applies a blurred background with brightness and opacity adjustments.
+//
+// @param {Number} $blur - Blur strength. 
+// @param {Number} $brightness - Brightness increase in percentage (e.g., 20 = 140% brightness).
+//
+// If blur or brightness coming from Adobe XD, note that its 0–50 range visually on app zip but it maps to 0–100px in CSS. The value will be divided by 2 to match this scale.
+// You can use higher values if desired.
+// 
+// @example scss
+//	.element {
+//		@include background-blur(40, 20, 80); // 40 = 20px blur in CSS
+//	}
+//
+@mixin background-blur($blur, $brightness)
+{
+	$blur: math.div($blur, 2);
+
+	$brightnessCalc: 1 + math.div(math.div($brightness, 100), 2);
+
+	backdrop-filter: blur(#{$blur}rem) brightness($brightnessCalc);
+	-webkit-backdrop-filter: blur(#{$blur}rem) brightness($brightnessCalc);
+}

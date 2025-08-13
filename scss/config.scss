@@ -1,3 +1,4 @@
+$assetsPath: '/wp-content/themes/theme_name';
 // Basic unit for project
 $modUnit: 'rem';
 
@@ -61,6 +62,15 @@ $configGenerateBgColorsClasses: false;
 $configGenerateBgColorsPerBreakPoint: false;
 // #endregion Colors
 
+// #region Backgrounds
+$configBgClassPrefix: 'bg';
+$configGenerateBackgroundPositions: true;
+$configGenerateBackgroundRepeats: false;
+$configGenerateBackgroundSizes: false;
+
+$configGenerateBgPerBreakPoint: false;
+// #endregion Backgrounds
+
 // #region FontSizes
 $configFontSizeClassPrefix: 'size';
 $configGenerateFontSizes: false;
@@ -90,7 +100,7 @@ $configGeneratePaddingsPerDirection: false; //like pt, pr, pb, pl, px, py;
 // #endregion Spacings
 
 // #region FontFamily
-$configFontFilesPath: '@rootScss/../fonts';
+$configFontFilesPath: '#{$assetsPath}/fonts';
 $configFontFamilyClassPrefix: 'family';
 $configGenerateFontFaces: true;
 $configGenerateFontFamilyClass: false;

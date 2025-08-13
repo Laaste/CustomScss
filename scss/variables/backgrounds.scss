@@ -1,0 +1,41 @@
+$background-positions: (
+	left: left center,
+	left-top: left top,
+	left-center: left center,
+	left-bottom: left bottom,
+
+	center-top: center top,
+	center-center: center center,
+	center-bottom: center bottom,
+
+	right: right center,
+	right-top: right top,
+	right-center: right center,
+	right-bottom: right bottom,
+
+	top: center top,
+	center: center center,
+	bottom: center bottom
+);
+
+$background-repeats: (
+	repeat: repeat,
+	no-repeat: no-repeat,
+	repeat-x: repeat-x,
+	repeat-y: repeat-y,
+	space: space,
+	round: round
+);
+
+$background-sizes: (
+	auto: auto,
+	cover: cover,
+	contain: contain,
+	200: 200%,
+	150: 150%,
+	100: 100%,
+	750: 750%,
+	50: 50%,
+	25: 25%,
+	0: 0%
+);
