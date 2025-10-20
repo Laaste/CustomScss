@@ -1,4 +1,4 @@
-$assetsPath: '/wp-content/themes/theme_name';
+$assetsPath: '/wp-content/themes/customtheme';
 // Basic unit for project
 $modUnit: 'rem';
 
@@ -100,7 +100,7 @@ $configGeneratePaddingsPerDirection: false; //like pt, pr, pb, pl, px, py;
 // #endregion Spacings
 
 // #region FontFamily
-$configFontFilesPath: '#{$assetsPath}/fonts';
+$configFontFilesPath: './../fonts';
 $configFontFamilyClassPrefix: 'family';
 $configGenerateFontFaces: true;
 $configGenerateFontFamilyClass: false;
